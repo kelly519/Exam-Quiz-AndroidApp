@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/mainPageFragment2">
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/backMainPage"
+            app:destination="@id/mainPageFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainPageFragment2"
+        android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.MainPageFragment"
+        android:label="MainPageFragment" >
+        <action
+            android:id="@+id/toSignUp"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+</navigation>

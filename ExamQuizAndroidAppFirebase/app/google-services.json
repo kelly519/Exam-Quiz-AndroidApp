@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "126217233846",
+    "project_id": "projects-55a38",
+    "storage_bucket": "projects-55a38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126217233846:android:7a1d24e71c5a1f363f0d17",
+        "android_client_info": {
+          "package_name": "com.example.exam_quiz_androidapp_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "***"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
