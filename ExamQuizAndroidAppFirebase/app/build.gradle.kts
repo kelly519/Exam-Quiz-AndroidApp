@@ -53,8 +53,8 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
 
-    implementation("com.google.dagger:hilt-android:2.51")
-    annotationProcessor("com.google.dagger:hilt-android-compiler:2.51")
+    implementation("com.google.dagger:hilt-android:2.39.1")
+    annotationProcessor("com.google.dagger:hilt-android-compiler:2.39.1")
 
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-firestore:25.0.0")

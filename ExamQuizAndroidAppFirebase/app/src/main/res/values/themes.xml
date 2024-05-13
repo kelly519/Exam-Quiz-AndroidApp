@@ -11,6 +11,8 @@
         <item name="colorSecondaryVariant">@color/main_blue</item>
         <item name="colorOnSecondary">@color/main_blue</item>
 
+        <item name ="android:windowTranslucentStatus">true</item>
+
     </style>
 
     <style name="Theme.ExamQuizAndroidAppFirebase" parent="Base.Theme.ExamQuizAndroidAppFirebase" />

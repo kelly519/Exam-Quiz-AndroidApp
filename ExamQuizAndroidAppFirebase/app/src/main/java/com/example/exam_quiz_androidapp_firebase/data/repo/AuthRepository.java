@@ -1,6 +1,8 @@
 package com.example.exam_quiz_androidapp_firebase.data.repo;
 
 import android.app.Application;
+import android.content.Context;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,70 +16,65 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AuthRepository {
-    private Application application;
-    private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
     private FirebaseAuth auth;
+    private MutableLiveData<FirebaseUser> firebaseUserMutableLiveData;
+    private MutableLiveData<Boolean> signUpStatusLiveData;
+    private MutableLiveData<String> errorMessageLiveData;
+
+    public AuthRepository(Context context) {
+        auth = FirebaseAuth.getInstance();
+        firebaseUserMutableLiveData = new MutableLiveData<>();
+        signUpStatusLiveData = new MutableLiveData<>();
+        errorMessageLiveData = new MutableLiveData<>();
+    }
 
     public MutableLiveData<FirebaseUser> getFirebaseUserMutableLiveData() {
         return firebaseUserMutableLiveData;
     }
 
-    public AuthRepository(Application application){
-        this.application = application;
-        firebaseUserMutableLiveData = new MutableLiveData<>();
-        auth = FirebaseAuth.getInstance();
-
-        if (auth.getCurrentUser() != null){
-            firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-        }
+    public MutableLiveData<Boolean> getSignUpStatusLiveData() {
+        return signUpStatusLiveData;
     }
 
-    public void register(String user_firstName, String user_lastName, String user_email, String user_password, String user_confirmPassword) {
-        if (user_firstName.isEmpty() || user_lastName.isEmpty()) {
-            Toast.makeText(application, "First and last name cannot be empty!", Toast.LENGTH_SHORT).show();
+    public MutableLiveData<String> getErrorMessageLiveData() {
+        return errorMessageLiveData;
+    }
+
+    public void register(String firstName, String lastName, String email, String password, String confirmPassword) {
+        if (firstName.isEmpty() || lastName.isEmpty()) {
+            errorMessageLiveData.postValue("First and last name cannot be empty!");
             return;
         }
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(user_email).matches()) {
-            Toast.makeText(application, "Please write your e-mail address correctly.", Toast.LENGTH_SHORT).show();
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            errorMessageLiveData.postValue("Please write your e-mail address correctly.");
             return;
         }
-        if (!user_password.equals(user_confirmPassword)) {
-            Toast.makeText(application, "The passwords don't match. Please check again..", Toast.LENGTH_SHORT).show();
+        if (!password.equals(confirmPassword)) {
+            errorMessageLiveData.postValue("The passwords don't match. Please check again.");
             return;
         }
 
-        auth.createUserWithEmailAndPassword(user_email, user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful()) {
-                    firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-
-
-
-
-                } else {
-                    Toast.makeText(application, "Kayıt başarısız: ", Toast.LENGTH_SHORT).show();
-                }
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
+                signUpStatusLiveData.postValue(true);
+            } else {
+                errorMessageLiveData.postValue("Registration failed: " + task.getException().getMessage());
             }
         });
     }
 
-    public void login(String user_email, String user_password) {
-
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(user_email).matches()) {
-            Toast.makeText(application, "Please write your e-mail address correctly.", Toast.LENGTH_SHORT).show();
+    public void login(String email, String password) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            errorMessageLiveData.postValue("Please write your e-mail address correctly.");
             return;
         }
-        auth.signInWithEmailAndPassword(user_email, user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
-                    Toast.makeText(application, "Login successful!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(application, "Login unsuccessful! ", Toast.LENGTH_SHORT).show();
-                }
+
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                firebaseUserMutableLiveData.postValue(auth.getCurrentUser());
+            } else {
+                errorMessageLiveData.postValue("Login failed: " + task.getException().getMessage());
             }
         });
     }

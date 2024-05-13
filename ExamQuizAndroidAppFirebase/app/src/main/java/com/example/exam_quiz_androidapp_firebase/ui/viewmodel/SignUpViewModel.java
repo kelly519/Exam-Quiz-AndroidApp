@@ -22,10 +22,14 @@ public class SignUpViewModel extends ViewModel {
         this.authRepository = authRepository;
     }
 
-    public void register(String user_firstName, String user_lastName, String user_email, String user_password, String user_confirmPassword) {
+    public void signUp(String user_firstName, String user_lastName, String user_email, String user_password, String user_confirmPassword) {
         authRepository.register(user_firstName, user_lastName, user_email, user_password, user_confirmPassword);
     }
     public LiveData<FirebaseUser> getUserData() {
         return userData;
+    }
+
+    public MutableLiveData<Boolean> getSignUpStatusLiveData() {
+        return authRepository.getSignUpStatusLiveData();
     }
 }
