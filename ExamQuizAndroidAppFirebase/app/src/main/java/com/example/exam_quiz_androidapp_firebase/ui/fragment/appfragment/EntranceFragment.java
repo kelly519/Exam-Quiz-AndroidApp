@@ -41,6 +41,6 @@ public class EntranceFragment extends Fragment {
         super.onStart();
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        Navigation.findNavController(requireView()).navigate(R.id.);
+        //Navigation.findNavController(requireView()).navigate(R.id.);
     }
 }

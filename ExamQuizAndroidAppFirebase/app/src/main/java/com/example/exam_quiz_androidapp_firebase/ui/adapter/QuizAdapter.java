@@ -2,12 +2,13 @@ package com.example.exam_quiz_androidapp_firebase.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.exam_quiz_androidapp_firebase.R;
 import com.example.exam_quiz_androidapp_firebase.data.model.QuizModel;
 import com.example.exam_quiz_androidapp_firebase.databinding.CardDesignBinding;
 
@@ -17,10 +18,12 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.CardDesignHold
 
     private Context mContext;
     private List<QuizModel> quizModelList;
+    private OnItemClicked itemClicked;
 
-    public QuizAdapter(Context mContext, List<QuizModel> quizModelList) {
+    public QuizAdapter(Context mContext, List<QuizModel> quizModelList, OnItemClicked itemClicked) {
         this.mContext = mContext;
         this.quizModelList = quizModelList;
+        this.itemClicked = itemClicked;
     }
 
     @NonNull
@@ -35,7 +38,19 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.CardDesignHold
         QuizModel quizModel = quizModelList.get(position);
         CardDesignBinding cardDesignBinding = holder.designBinding;
 
-        cardDesignBinding.
+        cardDesignBinding.textViewQuizTitle.setText(quizModel.getQuizname());
+        cardDesignBinding.textViewQuizDescription.setText(quizModel.getDescription());
+        cardDesignBinding.textViewListLevel.setText(quizModel.getLevel());
+
+        Glide.with(mContext)
+                .load(quizModel.getImage())
+                .placeholder(R.drawable.generalknowladge)
+                .centerCrop()
+                .into(cardDesignBinding.imageView);
+
+        cardDesignBinding.buttonStartQuiz.setOnClickListener(view ->{
+            itemClicked.somethingClicked(holder.getAdapterPosition());
+        });
 
     }
 
@@ -50,6 +65,11 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.CardDesignHold
         public CardDesignHolder(CardDesignBinding designBinding) {
             super(designBinding.getRoot());
             this.designBinding = designBinding;
+
         }
     }
+    public interface OnItemClicked {
+        void somethingClicked(int position);
+    }
 }
+

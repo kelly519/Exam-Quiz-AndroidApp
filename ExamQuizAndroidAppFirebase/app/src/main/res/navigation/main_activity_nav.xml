@@ -32,5 +32,49 @@
         android:id="@+id/entranceFragment"
         android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.appfragment.EntranceFragment"
         android:label="fragment_entrance"
-        tools:layout="@layout/fragment_entrance" />
+        tools:layout="@layout/fragment_entrance" >
+        <action
+            android:id="@+id/toList"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.appfragment.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/toDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.appfragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/toQuiz"
+            app:destination="@id/quizQuestionFragment" />
+        <argument
+            android:name="Position"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizQuestionFragment"
+        android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.appfragment.QuizQuestionFragment"
+        android:label="fragment_quiz_question"
+        tools:layout="@layout/fragment_quiz_question" >
+        <action
+            android:id="@+id/toResult"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.appfragment.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/backToList"
+            app:destination="@id/listFragment" />
+    </fragment>
 </navigation>
