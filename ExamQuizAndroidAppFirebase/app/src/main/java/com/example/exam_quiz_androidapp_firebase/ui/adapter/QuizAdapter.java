@@ -26,6 +26,11 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.CardDesignHold
         this.itemClicked = itemClicked;
     }
 
+    public void setQuizModelData(List<QuizModel> quizModelData) {
+        this.quizModelList = quizModelData;
+    }
+
+
     @NonNull
     @Override
     public CardDesignHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

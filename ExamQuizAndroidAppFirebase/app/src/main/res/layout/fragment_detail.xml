@@ -1,14 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.appfragment.DetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_blue"
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <ImageView
+        android:id="@+id/imageViewDetailImage"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/generalknowladge"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/imageViewDetailImage"
+        app:cardBackgroundColor="#000000"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/textViewDetailQuizTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz Title"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="25sp"
+                android:textColor="@color/white"/>
+
+
+
+            <TextView
+                android:id="@+id/textViewDetailQuizDescription"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/textViewDetailQuizTitle"
+                android:layout_height="wrap_content"
+                android:text="LLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="8dp"
+                android:textSize="18sp"
+                android:textColor="@color/white"/>
+
+
+
+            <TextView
+                android:id="@+id/textViewDetailLevelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="100dp"
+                android:text="Beginner"
+                android:layout_alignParentRight="true"
+                android:textSize="15sp"
+                android:layout_below="@id/textViewDetailQuizDescription"/>
+
+
+            <TextView
+                android:id="@+id/textViewDetailQuestionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="100dp"
+                android:layout_alignParentRight="true"
+                android:text="10"
+                android:textSize="15sp"
+                android:layout_below="@id/textViewDetailLevelText"/>
+
+
+            <TextView
+                android:id="@+id/textViewDetailLastScoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="100dp"
+                android:layout_alignParentRight="true"
+                android:text="N/A"
+                android:textSize="15sp"
+                android:layout_below="@id/textViewDetailQuestions"/>
+
+
+
+
+            <TextView
+                android:id="@+id/textViewDetailLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="100dp"
+                android:text="Level"
+                android:textSize="15sp"
+                android:layout_below="@id/textViewDetailQuizDescription"/>
+
+
+            <TextView
+                android:id="@+id/textViewDetailQuestions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="100dp"
+                android:text="Questions"
+                android:textSize="15sp"
+                android:layout_below="@id/textViewDetailLevel"/>
+
+
+            <TextView
+                android:id="@+id/textViewDetailLastScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="100dp"
+                android:text="Last Score"
+                android:textSize="15sp"
+                android:layout_below="@id/textViewDetailQuestions"/>
+
+
+
+            <Button
+                android:id="@+id/buttonDetailTakeQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_below="@id/textViewDetailLastScore"
+                android:text="Take Quiz"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
