@@ -35,6 +35,10 @@
         tools:layout="@layout/fragment_entrance" >
         <action
             android:id="@+id/toList"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/entranceFragment"
             app:destination="@id/listFragment" />
     </fragment>
     <fragment
@@ -44,6 +48,10 @@
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/toDetail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
@@ -53,6 +61,10 @@
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/toQuiz"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down"
             app:destination="@id/quizQuestionFragment" />
         <argument
             android:name="Position"
@@ -66,7 +78,20 @@
         tools:layout="@layout/fragment_quiz_question" >
         <action
             android:id="@+id/toResult"
+            app:popUpTo="@id/quizQuestionFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/resultFragment" />
+        <argument
+            android:name="quizName"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="quizid"
+            android:defaultValue="null" />
+        <argument
+            android:name="totalNumberOfQuestion"
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
@@ -75,6 +100,16 @@
         tools:layout="@layout/fragment_result" >
         <action
             android:id="@+id/backToList"
+            app:popUpTo="@id/resultFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/listFragment" />
+        <argument
+            android:name="userId"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="quizid"
+            app:argType="string"
+            android:defaultValue="null" />
     </fragment>
 </navigation>

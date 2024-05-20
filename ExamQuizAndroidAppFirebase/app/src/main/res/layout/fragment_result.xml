@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textViewResults_title"
+        android:id="@+id/textViewResultsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBarResults_progress"
+        android:id="@+id/progressBarResults"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="128dp"
         android:layout_height="128dp"
@@ -34,22 +34,22 @@
         android:progressDrawable="@drawable/circular_progress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResults_title" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewResultsTitle" />
 
     <TextView
-        android:id="@+id/results_percent"
+        android:id="@+id/textViewResultsPercent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="100%"
         android:textColor="@android:color/white"
         android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarResults_progress"
-        app:layout_constraintEnd_toEndOf="@+id/progressBarResults_progress"
-        app:layout_constraintStart_toStartOf="@+id/progressBarResults_progress"
-        app:layout_constraintTop_toTopOf="@+id/progressBarResults_progress" />
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarResults"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarResults"
+        app:layout_constraintStart_toStartOf="@+id/progressBarResults"
+        app:layout_constraintTop_toTopOf="@+id/progressBarResults" />
 
     <TextView
-        android:id="@+id/textViewResults_correct"
+        android:id="@+id/textViewCorrect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -58,11 +58,11 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarResults_progress"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarResults"
         android:layout_marginLeft="32dp" />
 
     <TextView
-        android:id="@+id/textViewResults_wrong"
+        android:id="@+id/textViewWrong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -71,11 +71,11 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResults_correct"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCorrect"
         android:layout_marginLeft="32dp" />
 
     <TextView
-        android:id="@+id/textViewResults_missed"
+        android:id="@+id/textViewMissed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -84,11 +84,11 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResults_wrong"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWrong"
         android:layout_marginLeft="32dp" />
 
     <TextView
-        android:id="@+id/textViewResults_correct_text"
+        android:id="@+id/textViewCorrectText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -96,11 +96,11 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewResults_correct"
+        app:layout_constraintTop_toTopOf="@+id/textViewCorrect"
         android:layout_marginRight="32dp" />
 
     <TextView
-        android:id="@+id/textViewResults_wrong_text"
+        android:id="@+id/textViewWrongText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -109,11 +109,11 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResults_correct_text"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCorrectText"
         android:layout_marginRight="32dp" />
 
     <TextView
-        android:id="@+id/textViewResults_missed_text"
+        android:id="@+id/textViewMissedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -122,11 +122,11 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResults_wrong_text"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWrongText"
         android:layout_marginRight="32dp" />
 
     <Button
-        android:id="@+id/results_home_btn"
+        android:id="@+id/buttonGoToHome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

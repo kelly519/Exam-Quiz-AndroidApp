@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -19,8 +20,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class EntranceFragment extends Fragment {
     private FragmentEntranceBinding binding;
-    FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
+    private NavController navController;
 
+    public EntranceFragment(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +39,7 @@ public class EntranceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         firebaseAuth =FirebaseAuth.getInstance();
+        navController = Navigation.findNavController(view);
     }
 
     @Override
@@ -41,6 +47,7 @@ public class EntranceFragment extends Fragment {
         super.onStart();
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        //Navigation.findNavController(requireView()).navigate(R.id.);
+        Navigation.findNavController(requireView()).navigate(R.id.toList);
     }
 }
+

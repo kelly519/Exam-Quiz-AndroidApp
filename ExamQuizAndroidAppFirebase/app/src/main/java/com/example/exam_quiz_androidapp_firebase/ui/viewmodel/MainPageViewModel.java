@@ -27,6 +27,7 @@ public class MainPageViewModel extends ViewModel {
     public void login(String user_email, String user_password) {
         authRepository.login(user_email, user_password);
         authRepository.getErrorMessageLiveData().observeForever(errorMessage::postValue);
+        loginResult.postValue(true);
     }
 
     public LiveData<Boolean> getLoginResult() {

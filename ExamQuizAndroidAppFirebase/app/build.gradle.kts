@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.gms.google-services")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs")
+
 
 }
 

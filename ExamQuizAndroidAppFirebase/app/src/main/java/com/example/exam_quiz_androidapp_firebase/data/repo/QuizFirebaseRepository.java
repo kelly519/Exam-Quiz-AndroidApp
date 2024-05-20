@@ -1,7 +1,6 @@
 package com.example.exam_quiz_androidapp_firebase.data.repo;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.exam_quiz_androidapp_firebase.data.model.QuizModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,9 +14,8 @@ public class QuizFirebaseRepository {
     private CollectionReference collectionQuiz;
     private OnFireStoreDataAdded fireStoreDataAdded;
 
-    public QuizFirebaseRepository(CollectionReference collectionQuiz, OnFireStoreDataAdded fireStoreDataAdded){
+    public QuizFirebaseRepository(CollectionReference collectionQuiz){
         this.collectionQuiz = collectionQuiz;
-        this.fireStoreDataAdded= fireStoreDataAdded;
     }
     public void getDataFromFireStore(){
         collectionQuiz.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -26,6 +26,10 @@ public class QuizViewModel extends ViewModel implements QuizFirebaseRepository.O
         quizFirebaseRepository.getDataFromFireStore();
     }
 
+    public QuizViewModel(){
+
+    }
+
     public LiveData<List<QuizModel>> getLiveDatafromFireStore() {
         return quizModelListData;
     }

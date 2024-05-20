@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class MainPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentMainPageBinding.inflate(inflater, container, false);
+        Log.d("TAG", "Bu bir debug mesajıdır.");
         return binding.getRoot();
     }
 
@@ -38,6 +40,7 @@ public class MainPageFragment extends Fragment {
 
         binding.textViewSignUp.setOnClickListener(view1 -> {
             Navigation.findNavController(view1).navigate(R.id.toSignUp);
+            Log.d("TAG", "Bu bir debug mesajıdır.");
         });
 
         binding.buttonLogin.setOnClickListener(view2 -> {
@@ -45,31 +48,40 @@ public class MainPageFragment extends Fragment {
             String user_password = binding.editTextPassword.getText().toString();
 
             viewModel.login(user_email, user_password);
+            Log.d("TAG", "Bu bir debug mesajıdır.");
 
             viewModel.getErrorMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
                 @Override
                 public void onChanged(String errorMessage) {
                     if (errorMessage != null) {
                         Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                        Log.d("TAG", "Bu bir debug mesajıdır.");
                     }
                 }
             });
 
-            viewModel.getFirebaseUserMutableLiveData().observe(getViewLifecycleOwner(), firebaseUser -> {
-                if (firebaseUser != null) {
-                    Navigation.findNavController(requireView()).navigate(R.id.toEntrance);
+            viewModel.getLoginResult().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean loginResult) {
+                    if (loginResult != null && loginResult) {
+                        Navigation.findNavController(requireView()).navigate(R.id.toEntrance);
+                        Log.d("TAG", "Bu bir debug mesajıdır.");
+                    }else {
+                        Log.d("TAG", "Bu bir debug mesajıdır.");
+                    }
                 }
             });
         });
+        Log.d("TAG", "Bu bir debug mesajıdır.");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(MainPageViewModel.class);
+        Log.d("TAG", "Bu bir debug mesajıdır.");
     }
 }
-
 
 
 
