@@ -17,23 +17,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class QuizViewModel extends ViewModel implements QuizFirebaseRepository.OnFireStoreDataAdded {
-    public MutableLiveData<List<QuizModel>> quizModelListData = new MutableLiveData<>();
-    public QuizFirebaseRepository quizFirebaseRepository;
+    private final MutableLiveData<List<QuizModel>> quizModelListData = new MutableLiveData<>();
+    private final QuizFirebaseRepository quizFirebaseRepository;
 
     @Inject
     public QuizViewModel(QuizFirebaseRepository quizFirebaseRepository){
         this.quizFirebaseRepository = quizFirebaseRepository;
-        quizFirebaseRepository.getDataFromFireStore();
-    }
-
-    public QuizViewModel(){
-
+        this.quizFirebaseRepository.setOnFireStoreDataAdded(this);
+        this.quizFirebaseRepository.getDataFromFireStore();
     }
 
     public LiveData<List<QuizModel>> getLiveDatafromFireStore() {
         return quizModelListData;
     }
 
+    @Override
     public void quizDataAdded(List<QuizModel> quizModelList) {
         quizModelListData.setValue(quizModelList);
     }

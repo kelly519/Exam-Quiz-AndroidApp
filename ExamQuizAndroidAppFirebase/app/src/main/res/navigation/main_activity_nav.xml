@@ -14,8 +14,8 @@
             android:id="@+id/backMainPage"
             app:destination="@id/mainPageFragment" />
         <action
-            android:id="@+id/toHomePage2"
-            app:destination="@id/entranceFragment" />
+            android:id="@+id/toList2"
+            app:destination="@id/listFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainPageFragment"
@@ -25,20 +25,7 @@
             android:id="@+id/toSignUp"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/toEntrance"
-            app:destination="@id/entranceFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/entranceFragment"
-        android:name="com.example.exam_quiz_androidapp_firebase.ui.fragment.appfragment.EntranceFragment"
-        android:label="fragment_entrance"
-        tools:layout="@layout/fragment_entrance" >
-        <action
             android:id="@+id/toList"
-            app:popUpToInclusive="true"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popUpTo="@id/entranceFragment"
             app:destination="@id/listFragment" />
     </fragment>
     <fragment

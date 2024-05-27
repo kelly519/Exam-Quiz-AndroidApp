@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.example.exam_quiz_androidapp_firebase.R;
 import com.example.exam_quiz_androidapp_firebase.data.model.QuizModel;
 import com.example.exam_quiz_androidapp_firebase.databinding.CardDesignBinding;
+import com.example.exam_quiz_androidapp_firebase.ui.fragment.appfragment.ListFragment;
 
 import java.util.List;
 
@@ -20,21 +21,20 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.CardDesignHold
     private List<QuizModel> quizModelList;
     private OnItemClicked itemClicked;
 
-    public QuizAdapter(Context mContext, List<QuizModel> quizModelList, OnItemClicked itemClicked) {
-        this.mContext = mContext;
-        this.quizModelList = quizModelList;
+    public QuizAdapter(OnItemClicked itemClicked) {
         this.itemClicked = itemClicked;
     }
-
     public void setQuizModelData(List<QuizModel> quizModelData) {
         this.quizModelList = quizModelData;
+        notifyDataSetChanged();
     }
 
 
     @NonNull
     @Override
     public CardDesignHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CardDesignBinding binding = CardDesignBinding.inflate(LayoutInflater.from(mContext),parent,false);
+        Context context = parent.getContext();
+        CardDesignBinding binding = CardDesignBinding.inflate(LayoutInflater.from(context), parent, false);
         return new CardDesignHolder(binding);
     }
 
@@ -47,7 +47,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.CardDesignHold
         cardDesignBinding.textViewQuizDescription.setText(quizModel.getDescription());
         cardDesignBinding.textViewListLevel.setText(quizModel.getLevel());
 
-        Glide.with(mContext)
+        Glide.with(cardDesignBinding.imageView.getContext())
                 .load(quizModel.getImage())
                 .placeholder(R.drawable.generalknowladge)
                 .centerCrop()
@@ -61,16 +61,14 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.CardDesignHold
 
     @Override
     public int getItemCount() {
-        return quizModelList.size();
+        return quizModelList != null ? quizModelList.size() : 0; // bak
     }
 
-    public class CardDesignHolder extends RecyclerView.ViewHolder{
-        private CardDesignBinding designBinding;
-
+    public static class CardDesignHolder extends RecyclerView.ViewHolder {
+        private final CardDesignBinding designBinding;
         public CardDesignHolder(CardDesignBinding designBinding) {
             super(designBinding.getRoot());
             this.designBinding = designBinding;
-
         }
     }
     public interface OnItemClicked {

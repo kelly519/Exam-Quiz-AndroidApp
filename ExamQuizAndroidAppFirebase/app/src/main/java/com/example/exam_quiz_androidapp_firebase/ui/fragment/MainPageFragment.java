@@ -64,7 +64,7 @@ public class MainPageFragment extends Fragment {
                 @Override
                 public void onChanged(Boolean loginResult) {
                     if (loginResult != null && loginResult) {
-                        Navigation.findNavController(requireView()).navigate(R.id.toEntrance);
+                        Navigation.findNavController(requireView()).navigate(R.id.toList);
                         Log.d("TAG", "Bu bir debug mesajıdır.");
                     }else {
                         Log.d("TAG", "Bu bir debug mesajıdır.");

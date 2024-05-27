@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ProgressBar;
 
 import com.example.exam_quiz_androidapp_firebase.R;
 import com.example.exam_quiz_androidapp_firebase.data.model.QuizModel;
@@ -30,9 +32,10 @@ public class ListFragment extends Fragment implements QuizAdapter.OnItemClicked 
     private FragmentListBinding binding;
     private QuizViewModel viewModel;
     private NavController navController;
-
+    private QuizAdapter mAdapter;
     private Animation fadein;
     private Animation fadeout;
+
 
     public ListFragment() {
 
@@ -51,39 +54,34 @@ public class ListFragment extends Fragment implements QuizAdapter.OnItemClicked 
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
+        RecyclerView recyclerView = binding.recyclerView;
+        ProgressBar progressBar = binding.progressBarList;
 
         fadein = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
         fadeout = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.recyclerView.setHasFixedSize(true);
+        mAdapter = new QuizAdapter(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(mAdapter);
+
+        viewModel = new ViewModelProvider(this).get(QuizViewModel.class);
 
         viewModel.getLiveDatafromFireStore().observe(getViewLifecycleOwner(), new Observer<List<QuizModel>>() {
             @SuppressLint("NotifyDataSetChanged") //
             @Override
             public void onChanged(List<QuizModel> quizModelList) {
 
-                QuizAdapter mAdapter = new QuizAdapter(requireContext(), quizModelList, (QuizAdapter.OnItemClicked) viewModel);  //  ListFragment.this
-                binding.recyclerView.setAdapter(mAdapter);
-
                 // Adapter'i güncelle ve animasyonları ayarla
                 mAdapter.setQuizModelData(quizModelList);
-                mAdapter.notifyDataSetChanged(); //
-                binding.recyclerView.setAnimation(fadein);
-                binding.progressBarList.setAnimation(fadeout);
+                recyclerView.setAnimation(fadein);
+                progressBar.setAnimation(fadeout);
             }
         });
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(QuizViewModel.class);
-    }
-
-    @Override
     public void somethingClicked(int position) {
-        //////////////////// bu kismi yapamadim atladim bakman lazim 5. video sonu /// tamamdir sonunda yaptim ama sen yinede tam mantigi anla unutma tekrar bak impleme silme olayina bi bak silip calisiyor mu vs diye
         ListFragmentDirections.ToDetail action = ListFragmentDirections.toDetail();
         action.setPosition(position);
         navController.navigate(action);

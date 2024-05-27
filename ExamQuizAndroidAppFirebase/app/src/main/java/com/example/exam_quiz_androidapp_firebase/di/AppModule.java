@@ -37,7 +37,7 @@ public class AppModule {
     @Singleton
     @Provides
     public static QuizFirebaseRepository provideQuizFirebaseRepository(CollectionReference collectionReference) {
-        return new QuizFirebaseRepository(collectionReference);
+        return new QuizFirebaseRepository(collectionReference.getFirestore());
     }
 
 }
